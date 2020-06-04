@@ -88,6 +88,68 @@ const data = [
   }
 ];
 
+
+let articleMaker = function(arr){
+
+  let article=document.createElement('div')
+  let title=document.createElement('h2')
+  let date= document.createElement('p')
+  let paragraph_1=document.createElement('p')
+  let paragraph_2=document.createElement('p')
+  let paragraph_3=document.createElement('p')
+  let span=document.createElement('span')
+  
+  article.classList.add("article")
+  date.classList.add("date")
+  span.classList.add("expandButton")
+  //Added classes to article 
+  
+  article.appendChild(title)
+  article.appendChild(date)
+  article.appendChild(paragraph_1)
+  article.appendChild(paragraph_2)
+  article.appendChild(paragraph_3)
+  article.appendChild(span)
+  //Elements are inside article 
+
+  title.textContent=arr.title  
+ date.textContent=arr.date  
+ paragraph_1.textContent=arr.firstParagraph
+ paragraph_2.textContent=arr.secondParagraph
+ paragraph_3.textContent=arr.thirdParagraph
+ span.textContent="See More"
+  
+
+  span.addEventListener('click', (event)=>{
+    article.classList.toggle('article-open')
+  })
+  return article;
+
+}
+
+const mainArticle=document.querySelector(".articles");
+
+data.forEach(arr=>{   // Adds Title
+ 
+ mainArticle.appendChild(articleMaker(arr))
+
+})
+
+
+
+
+
+
+
+
+// let winnersByYear = gameYears.map(function (year, index) {
+//   let winnerYears = gameWinners[index];
+//   return `In ${year}, ${winnerYears} won the world cup!`;
+// })
+// return winnersByYear;
+// }
+
+
 /* Step 1: Write a component called 'articleMaker' to create an article. You want your component to return markup like the template below: 
 
   <div class="article">
@@ -98,6 +160,7 @@ const data = [
 
     <span class='expandButton'></span>
   </div>
+  
 
   Hint: You will need to use createElement more than once here!
 
